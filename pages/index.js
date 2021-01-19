@@ -13,6 +13,8 @@ class Index extends React.Component {
 
   render() {
 
+    const emptyState = !store.get('ids');
+
     return (
 
       <Page>
@@ -33,28 +35,22 @@ class Index extends React.Component {
             onCancel={() => this.setState({ open: false })}
           />  
 
-        <Layout>
-              <TextStyle variation="positive">
-                Hello Mango Chagno - this app using React and Next.js
-              </TextStyle>
-
-              <EmptyState
-                  heading="Discount your products temporarily"
-
+          {emptyState ? (
+              <Layout>
+                <EmptyState
+                  heading="Select products to start"
                   action={{
-                    content: 'Seleccione Productos',
+                    content: 'Select products',
                     onAction: () => this.setState({ open: true }),
                   }}
-
-                  image={img}>
-
-                  <p> Select products to change their price temporarily. </p>
-
-              </EmptyState>
-
-        </Layout>
-
-        <ResourceListWithProducts />
+                  image={img}
+                >
+                  <p>Select products and change their price temporarily</p>
+                </EmptyState>
+              </Layout>
+            ) : (
+                <ResourceListWithProducts />
+          )}
 
       </Page>
       
