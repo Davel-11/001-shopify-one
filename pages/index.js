@@ -2,6 +2,9 @@ import { Page, TextStyle, Layout, EmptyState } from '@shopify/polaris';
 import { ResourcePicker, TitleBar } from '@shopify/app-bridge-react';
 import React from 'react';
 const img = 'https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg';
+import store from 'store-js';
+import ResourceListWithProducts from '../components/ResourceList';
+
 
 
 class Index extends React.Component {
@@ -51,6 +54,8 @@ class Index extends React.Component {
 
         </Layout>
 
+        <ResourceListWithProducts />
+
       </Page>
       
     );
@@ -61,9 +66,11 @@ class Index extends React.Component {
 
     const idsFromResources = resources.selection.map((product) => product.id);
 
-    this.setState({ open: false })
+    this.setState({ open: false });
     
-    console.log(idsFromResources)
+    console.log(idsFromResources);
+
+    store.set('ids', idsFromResources);
   };
 
 }
