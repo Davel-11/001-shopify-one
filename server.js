@@ -39,7 +39,7 @@ app.prepare().then(() => {
                 // ctx.redirect(`/?shop=${shop}`);
 
                 ctx.cookies.set('shopOrigin', shop, {
-                    httpOnly: false
+                    httpOnly: false,
                     secure: true,
                     sameSite: 'none'
                   });
